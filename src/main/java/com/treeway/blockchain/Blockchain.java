@@ -1,10 +1,12 @@
 package com.treeway.blockchain;
 
 import com.mojang.logging.LogUtils;
+import com.treeway.blockchain.block.ModBlocks;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
@@ -29,11 +31,15 @@ public class Blockchain
     public Blockchain()
     {
         // Register the setup method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+//        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 //        // Register the enqueueIMC method for modloading
 //        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
 //        // Register the processIMC method for modloading
 //        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
+
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        ModBlocks.register(eventBus);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
