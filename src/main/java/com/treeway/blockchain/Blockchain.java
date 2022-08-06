@@ -2,6 +2,7 @@ package com.treeway.blockchain;
 
 import com.mojang.logging.LogUtils;
 import com.treeway.blockchain.block.ModBlocks;
+import com.treeway.blockchain.item.ModItems;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -40,6 +41,7 @@ public class Blockchain
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModBlocks.register(eventBus);
+        ModItems.register(eventBus);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
