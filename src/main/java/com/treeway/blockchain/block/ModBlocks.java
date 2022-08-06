@@ -19,10 +19,12 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, Blockchain.MOD_ID);
 
+    // Create a block called "Blockchain" (it's just a funny chain block lol, I don't support crypto :P )
     public static final RegistryObject<Block> BLOCKCHAIN = registerBlock("blockchain",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(9f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
+    // Then we register the block. This succeeds as I'm able to use /setblock blockchain:blockchain with no issues
     private static <T extends Block> RegistryObject<T> registerBlock
             (String name, Supplier<T> block, CreativeModeTab tab) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
@@ -30,6 +32,7 @@ public class ModBlocks {
         return toReturn;
     }
 
+    // This is SUPPOSED to register the block's item, but it's not in the creative mode inventory...
     private static <T extends Block> RegistryObject<Item> registerBlockItem
             (String name, RegistryObject<T> block, CreativeModeTab tab) {
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
